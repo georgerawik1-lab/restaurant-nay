@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurant Nay — Cuisine libanaise à Lyon</title>
+<meta name="description" content="Restaurant & traiteur libanais au cœur de Lyon 6e. Mezzés, grillades, fattouch… Réservez votre table en ligne.">
+<link rel="icon" href="images/logo.png">
+<meta property="og:title" content="Restaurant Nay — Cuisine libanaise à Lyon">
+<meta property="og:description" content="Un voyage au cœur des saveurs libanaises, au cœur de Lyon.">
+<meta property="og:image" content="images/plateau-grillades.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf6ef; --paper:#fffdf9; --ink:#2b2622; --muted:#6f655c;
+    --gold:#b8922f; --gold-dark:#8f6f1d; --teal:#17798a; --teal-dark:#105c69;
+    --line:#e7dccb;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+
+  /* Buttons */
+  .btn{display:inline-block;padding:14px 28px;border-radius:2px;font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.04em;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+  .btn-gold{background:var(--gold);color:#fff;border:1px solid var(--gold)}
+  .btn-gold:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
+  .btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.8)}
+  .btn-ghost:hover{background:#fff;color:var(--ink)}
+  .btn-teal{background:var(--teal);color:#fff;border:1px solid var(--teal)}
+  .btn-teal:hover{background:var(--teal-dark)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(250,246,239,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand img{width:52px;height:52px}
+  .brand span{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--teal)}
+  .links{display:flex;gap:28px;align-items:center}
+  .links a{text-decoration:none;font-size:15px;color:var(--muted)}
+  .links a:hover{color:var(--ink)}
+  .nav .btn{padding:10px 20px;font-size:14px}
+  @media (max-width:760px){ .links a:not(.btn){display:none} }
+
+  /* Hero */
+  .hero{position:relative;min-height:calc(100vh - 72px);min-height:calc(100svh - 72px);display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url('images/plateau-grillades.jpg') center/cover no-repeat}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,8,.55),rgba(20,14,8,.65))}
+  .hero-inner{position:relative;z-index:1;padding:60px 20px;max-width:760px}
+  .eyebrow{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#f0d78f;margin:0 0 14px}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(42px,7vw,78px);line-height:1.05;margin:0 0 18px}
+  .hero p.lead{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,26px);margin:0 0 34px;opacity:.95}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* Sections */
+  section{padding:96px 0}
+  .title{text-align:center;margin-bottom:48px}
+  .title .eyebrow{color:var(--gold)}
+  .title h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.5vw,50px);line-height:1.1;margin:0}
+  .title .rule{width:56px;height:1px;background:var(--gold);margin:20px auto 0}
+
+  /* Gallery */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .gallery figure{margin:0;position:relative;overflow:hidden;aspect-ratio:3/4;background:#ddd}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .gallery figure:hover img{transform:scale(1.04)}
+  .gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;color:#fff;font-family:var(--serif);font-size:22px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+  @media (max-width:860px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .gallery{grid-template-columns:1fr} .gallery figure{aspect-ratio:4/5} }
+  .center{text-align:center;margin-top:44px}
+
+  /* About */
+  .about{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .about-grid img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .about .title{text-align:left;margin-bottom:24px}
+  .about .title .rule{margin-left:0}
+  .about p{color:var(--muted);font-size:17px;margin:0 0 16px}
+  .sign{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--gold-dark);margin-top:24px}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;gap:36px} }
+
+  /* Why */
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .why div{text-align:center;padding:0 10px}
+  .why .num{font-family:var(--serif);font-size:40px;color:var(--gold);line-height:1}
+  .why h3{font-family:var(--serif);font-weight:600;font-size:26px;margin:12px 0 4px}
+  .why .sub{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 12px}
+  .why p{color:var(--muted);margin:0}
+  @media (max-width:860px){ .why{grid-template-columns:1fr;gap:44px} }
+
+  /* Band */
+  .band{position:relative;padding:110px 0;text-align:center;color:#fff;background:url('images/brochettes.jpg') center/cover}
+  .band::before{content:"";position:absolute;inset:0;background:rgba(16,92,105,.82)}
+  .band .wrap{position:relative}
+  .band h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.5vw,48px);margin:0 0 12px}
+  .band p{font-size:17px;opacity:.9;margin:0 0 30px}
+
+  /* Contact */
+  .info{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
+  .info h3{font-family:var(--serif);font-weight:600;font-size:24px;margin:0 0 14px;color:var(--teal)}
+  .info p{margin:0 0 6px;color:var(--muted)}
+  .info a{text-decoration:none;border-bottom:1px solid var(--line)}
+  .info a:hover{border-color:var(--gold)}
+  .hours{width:100%;border-collapse:collapse;font-size:15px}
+  .hours td{padding:6px 0;border-bottom:1px solid var(--line);color:var(--muted);vertical-align:top}
+  .hours td:first-child{color:var(--ink);padding-right:12px;white-space:nowrap}
+  .hours td:last-child{text-align:right}
+  .map{margin-top:56px;border:1px solid var(--line);height:360px}
+  .map iframe{width:100%;height:100%;border:0;display:block}
+  @media (max-width:860px){ .info{grid-template-columns:1fr} }
+
+  footer{background:#221d19;color:#cfc5b8;padding:48px 0;font-size:14px;text-align:center}
+  footer img{width:72px;margin:0 auto 14px;background:#fff;border-radius:50%}
+  footer a{color:#f0d78f;text-decoration:none}
+  footer .social{margin:10px 0 18px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Restaurant Nay — accueil">
+      <img src="images/logo.png" alt="Logo Restaurant Nay">
+      <span>Nay</span>
+    </a>
+    <nav class="links">
+      <a href="#plats">Nos plats</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-gold" href="https://booking.ureserve.co/shop/external-booking/restaurant-nay?fullpage=true&amp;lang_code=fr" target="_blank" rel="noopener">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <div class="hero-bg" role="img" aria-label="Plateau de grillades libanaises"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">Restaurant · Traiteur libanais</p>
+      <h1>Bienvenue au Restaurant Nay</h1>
+      <p class="lead">Un voyage au cœur des saveurs libanaises, au cœur de Lyon.</p>
+      <div class="cta">
+        <a class="btn btn-gold" href="https://booking.ureserve.co/shop/external-booking/restaurant-nay?fullpage=true&amp;lang_code=fr" target="_blank" rel="noopener">Réserver une table</a>
+        <a class="btn btn-ghost" href="carte-nay.pdf" target="_blank" rel="noopener">Notre carte</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="plats">
+    <div class="wrap">
+      <div class="title">
+        <p class="eyebrow">Fait maison</p>
+        <h2>Nos plats</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="gallery">
+        <figure><img src="images/mezze-table.jpg" alt="Assortiment de mezzés : houmous, mouhammara, feuilles de vigne, taboulé, moutabal" loading="lazy"><figcaption>Mezzés froids</figcaption></figure>
+        <figure><img src="images/brochettes.jpg" alt="Brochettes de kefta, viande et poulet sur le grill" loading="lazy"><figcaption>Grillades au feu</figcaption></figure>
+        <figure><img src="images/plat-mixte.jpg" alt="Plat mixte avec viande, frites et mezzés" loading="lazy"><figcaption>Plat mixte</figcaption></figure>
+        <figure><img src="images/fattouch.jpg" alt="Salade fattouch au pain croustillant" loading="lazy"><figcaption>Fattouch</figcaption></figure>
+        <figure><img src="images/viande.jpg" alt="Viande grillée sur pain libanais" loading="lazy"><figcaption>Viande grillée</figcaption></figure>
+        <figure><img src="images/plateau-grillades.jpg" alt="Grand plateau de grillades à partager" loading="lazy"><figcaption>Plateau à partager</figcaption></figure>
+      </div>
+      <div class="center">
+        <a class="btn btn-teal" href="carte-nay.pdf" target="_blank" rel="noopener">Découvrir notre carte</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="apropos">
+    <div class="wrap about-grid">
+      <img src="images/mezze-plateau.jpg" alt="Plateau de mezzés libanais" loading="lazy">
+      <div>
+        <div class="title">
+          <p class="eyebrow">Notre histoire</p>
+          <h2>À propos de Nay</h2>
+          <div class="rule"></div>
+        </div>
+        <p>Découvrez Joumane et Georges, un couple animé par l’amour de la gastronomie libanaise et héritiers d’une longue tradition familiale dans la cuisine méditerranéenne.</p>
+        <p>Dirigeants du Restaurant Nay, ils sont également à la tête d’une famille de traiteurs spécialisée dans les mariages, événements d’entreprise et réceptions privées.</p>
+        <p class="sign">Joumane &amp; Georges</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="title">
+        <p class="eyebrow">L’expérience Nay</p>
+        <h2>Pourquoi choisir Nay&nbsp;?</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="why">
+        <div>
+          <div class="num">01</div>
+          <h3>Menu exquis</h3>
+          <p class="sub">Sélections variées</p>
+          <p>Notre menu offre un large éventail d’options libanaises, des plats classiques aux créations uniques, pour tous les palais.</p>
+        </div>
+        <div>
+          <div class="num">02</div>
+          <h3>Ingrédients frais</h3>
+          <p class="sub">Produits de saison</p>
+          <p>Nous privilégions des produits frais et de saison, pour la plus haute qualité et dans le respect de l’environnement.</p>
+        </div>
+        <div>
+          <div class="num">03</div>
+          <h3>Service irréprochable</h3>
+          <p class="sub">Accueil chaleureux</p>
+          <p>Notre équipe s’engage à vous offrir un service attentionné et une expérience culinaire mémorable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <h2>Une table vous attend</h2>
+      <p>Réservez en quelques clics, midi ou soir.</p>
+      <a class="btn btn-gold" href="https://booking.ureserve.co/shop/external-booking/restaurant-nay?fullpage=true&amp;lang_code=fr" target="_blank" rel="noopener">Réserver une table</a>
+    </div>
+  </div>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="title">
+        <p class="eyebrow">Nous trouver</p>
+        <h2>Contact &amp; horaires</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="info">
+        <div>
+          <h3>Adresse</h3>
+          <p>38 Rue Notre Dame<br>69006 Lyon, France</p>
+          <p style="margin-top:14px"><a href="https://www.google.com/maps/search/?api=1&amp;query=38+Rue+Notre+Dame+69006+Lyon" target="_blank" rel="noopener">Itinéraire →</a></p>
+        </div>
+        <div>
+          <h3>Nous joindre</h3>
+          <p><a href="tel:+33616991973">+33 6 16 99 19 73</a></p>
+          <p><a href="mailto:joumane.georges@gmail.com">joumane.georges@gmail.com</a></p>
+          <p style="margin-top:14px"><a href="https://www.instagram.com/joumane_georges" target="_blank" rel="noopener">Instagram @joumane_georges</a></p>
+        </div>
+        <div>
+          <h3>Horaires d’ouverture</h3>
+          <table class="hours">
+            <tr><td>Lundi</td><td>11h30 – 14h30</td></tr>
+            <tr><td>Mardi</td><td>11h30 – 14h30<br>19h00 – 23h00</td></tr>
+            <tr><td>Mercredi</td><td>11h30 – 14h30<br>19h00 – 23h00</td></tr>
+            <tr><td>Jeudi</td><td>11h30 – 14h30<br>19h00 – 23h00</td></tr>
+            <tr><td>Vendredi</td><td>11h30 – 14h30<br>19h00 – 23h00</td></tr>
+            <tr><td>Samedi</td><td>11h30 – 14h30<br>19h00 – 23h00</td></tr>
+            <tr><td>Dimanche</td><td>Fermé</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="map">
+        <iframe title="Plan d’accès Restaurant Nay" src="https://maps.google.com/maps?q=38%20Rue%20Notre%20Dame%2C%2069006%20Lyon&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="images/logo.png" alt="">
+    <div>Restaurant Nay · Traiteur libanais · 38 Rue Notre Dame, 69006 Lyon</div>
+    <div class="social"><a href="https://www.instagram.com/joumane_georges" target="_blank" rel="noopener">Instagram</a> · <a href="tel:+33616991973">06 16 99 19 73</a></div>
+    <div>© Restaurant Nay</div>
+  </div>
+</footer>
+
+</body>
+</html>
